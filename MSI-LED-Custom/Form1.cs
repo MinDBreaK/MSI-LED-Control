@@ -34,14 +34,27 @@ namespace MSI_LED_Custom
             {
                 textBox1.Text = "255";
             }
+            if (Int32.Parse(textBox1.Text) < 0)
+            {
+                textBox1.Text = "0";
+            }
             if (Int32.Parse(textBox2.Text) > 255)
             {
                 textBox2.Text = "255";
+            }
+            if (Int32.Parse(textBox2.Text) < 0)
+            {
+                textBox2.Text = "0";
             }
             if (Int32.Parse(textBox3.Text) > 255)
             {
                 textBox3.Text = "255";
             }
+            if (Int32.Parse(textBox3.Text) < 0)
+            {
+                textBox3.Text = "0";
+            }
+
             Program.ledColor = Color.FromArgb(255, Int32.Parse(textBox1.Text), Int32.Parse(textBox2.Text), Int32.Parse(textBox3.Text));
             label1.Text = Program.ledColor.ToString();
             Program.ledManager.UpdateAll(Program.ledColor, Program.animationType);
@@ -54,18 +67,23 @@ namespace MSI_LED_Custom
                 case (int)AnimationType.NoAnimation:
                     Program.animationType = AnimationType.NoAnimation;
                     break;
+
                 case (int)AnimationType.Breathing:
                     Program.animationType = AnimationType.Breathing;
                     break;
+
                 case (int)AnimationType.Flashing:
                     Program.animationType = AnimationType.Flashing;
                     break;
+
                 case (int)AnimationType.DoubleFlashing:
                     Program.animationType = AnimationType.DoubleFlashing;
                     break;
+
                 case (int)AnimationType.Off:
                     Program.animationType = AnimationType.Off;
                     break;
+
                 case (int)AnimationType.TemperatureBased:
                     Program.animationType = AnimationType.TemperatureBased;
                     break;

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Threading;
-
+using System.Threading.Tasks;
 
 namespace MSI_LED_Custom
 {
-    class LedManager_AMD_Side : LedManager
+    class LedManager_AMD_Front : LedManager
     {
         private Thread t;
         private bool shouldStop = false;
@@ -20,7 +21,7 @@ namespace MSI_LED_Custom
         private int[] temperatureLimits;
         private int lastTemperature = -1;
 
-        public LedManager_AMD_Side()
+        public LedManager_AMD_Front ()
         {
             this.adapterIndexes = Program.adapterIndexes;
             this.ledColor = Program.ledColor;
@@ -28,8 +29,35 @@ namespace MSI_LED_Custom
             this.temperatureLimits[0] = 45;
             this.temperatureLimits[1] = 65;
             this.mutex = new Mutex();
-
         }
+        public override void Start()
+        {
+            this.t = new Thread(new ThreadStart(this.Run));
+            t.Start();
+        }
+
+        public override void Stop()
+        {
+            this.shouldStop = true;
+            this.shouldUpdate = true;
+        }
+
+        public override void Update(AnimationType newAnimation, Color ledColor)
+        {
+            this.animationType = newAnimation;
+            this.ledColor = ledColor;
+            this.shouldUpdate = true;
+        }
+
+        private void PatientlyWait()
+        {
+            while (!shouldStop && !shouldUpdate)
+            {
+                Thread.Sleep(1000);
+            }
+            return;
+        }
+
         protected override void Run()
         {
             while (!shouldStop)
@@ -63,58 +91,11 @@ namespace MSI_LED_Custom
             }
         }
 
-        public override void Start()
-        {
-            this.t = new Thread(new ThreadStart(this.Run));
-            t.Start();
-        }
-
-        public override void Stop()
-        {
-            this.shouldStop = true;
-            this.shouldUpdate = true;
-        }
-
-        public override void Update(AnimationType newAnimation, Color ledColor)
-        {
-            this.animationType = newAnimation;
-            this.ledColor = ledColor;
-            this.shouldUpdate = true;
-        }
-
-        private void PatientlyWait()
-        {
-            while (!shouldStop && !shouldUpdate)
-            {
-                Thread.Sleep(1000);
-            }
-            return;
-        }
-
-        protected override void updateLed_NoAnimation()
-        {
-            for (int i = 0; i < this.adapterIndexes.Count; i++)
-            {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 21, 1, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
-            }
-            this.PatientlyWait();
-
-        }
-
         protected override void updateLed_Breathing()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 27, 1, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
-            }
-            this.PatientlyWait();
-        }
-
-        protected override void updateLed_Flashing()
-        {
-            for (int i = 0; i < this.adapterIndexes.Count; i++)
-            {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 28, 1, 0, 100, 100, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _ADL.ADL_SetIlluminationParm_RGB(i, 27, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -123,7 +104,25 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 30, 1, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _ADL.ADL_SetIlluminationParm_RGB(i, 30, 4, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
+            }
+            this.PatientlyWait();
+        }
+
+        protected override void updateLed_Flashing()
+        {
+            for (int i = 0; i < this.adapterIndexes.Count; i++)
+            {
+                _ADL.ADL_SetIlluminationParm_RGB(i, 28, 4, 0, 100, 100, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
+            }
+            this.PatientlyWait();
+        }
+
+        protected override void updateLed_NoAnimation()
+        {
+            for (int i = 0; i < this.adapterIndexes.Count; i++)
+            {
+                _ADL.ADL_SetIlluminationParm_RGB(i, 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
             }
             this.PatientlyWait();
         }
@@ -132,7 +131,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 24, 1, 0, 0, 0, 0, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                _ADL.ADL_SetIlluminationParm_RGB(i, 24, 4, 0, 0, 0, 0, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
             }
             this.PatientlyWait();
         }
@@ -151,7 +150,7 @@ namespace MSI_LED_Custom
 
                     for (int i = 0; i < this.adapterIndexes.Count; i++)
                     {
-                        _ADL.ADL_SetIlluminationParm_RGB(i, 21, 1, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                        _ADL.ADL_SetIlluminationParm_RGB(i, 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
                     }
                 }
                 mutex.ReleaseMutex();

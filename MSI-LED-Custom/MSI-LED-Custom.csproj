@@ -69,6 +69,7 @@
     <Compile Include="LedManager\LedManager.cs" />
     <Compile Include="LedManager\LedManager_Common.cs" />
     <Compile Include="LedManager\LedManager_AMD_Side.cs" />
+    <Compile Include="LedManager\LedManager_AMD_Front.cs" />
     <Compile Include="LedUpdater.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Form1.cs">

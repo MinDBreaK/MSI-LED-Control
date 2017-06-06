@@ -207,8 +207,11 @@ namespace MSI_LED_Custom
                             mutex.WaitOne();
                             if (_ADL.ADL_GetGraphicsInfo(0, out adlGraphicsInfo))
                             {
-                                int temperatureDelta = CalculateTemperatureDeltaHunderdBased(temperatureLimits[0],
-                                    temperatureLimits[1], adlGraphicsInfo.GPU_Temperature_Current);
+                                int temperatureDelta = CalculateTemperatureDeltaHunderdBased(
+                                                                    temperatureLimits[0],
+                                                                    temperatureLimits[1], 
+                                                                    adlGraphicsInfo.GPU_Temperature_Current
+                                                                    );
                                 ledColor = GetColorForDeltaTemperature(temperatureDelta);
                                 UpdateLeds(21, 1, 4);
                             }

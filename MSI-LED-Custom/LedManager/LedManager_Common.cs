@@ -29,6 +29,8 @@ namespace MSI_LED_Custom
             {
                 Debug.WriteLine("Initilization of the AMD managers");
                 ledList.Add( new LedManager_AMD_Side() );
+                ledList.Add(new LedManager_AMD_Front());
+
             } 
         }
 
