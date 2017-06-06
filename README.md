@@ -28,3 +28,7 @@ You have the choice between :
 ## Why there is no motherboard support ? 
 
 The control of the motherboard need to communicate with a kernel driver, and I don't know anything about this, but you can read more about this here : https://github.com/nagisa/msi-rgb/
+
+## Known issues
+1. The updates might fail. Switch to OFF mode and turn it back on.
+2. The side LED don't shut down. 
