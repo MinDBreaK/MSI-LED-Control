@@ -31,4 +31,4 @@ The control of the motherboard need to communicate with a kernel driver, and I d
 
 ## Known issues
 1. The updates might fail. Switch to OFF mode and turn it back on.
-2. The side LED don't shut down. 
+
