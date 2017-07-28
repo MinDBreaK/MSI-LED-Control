@@ -27,16 +27,17 @@ namespace MSI_LED_Custom
         {
             if ( this.manfacturer == Manufacturer.AMD )
             {
-                Debug.WriteLine("Initilization of the AMD managers");
                 ledList.Add( new LedManager_AMD_Side() );
-                ledList.Add(new LedManager_AMD_Front());
-
-            } 
+                ledList.Add( new LedManager_AMD_Front());
+            } else if ( this.manfacturer == Manufacturer.Nvidia )
+            {
+                ledList.Add( new LedManager_NVD_Side() );
+                ledList.Add(new LedManager_NVD_Front());
+            }
         }
 
         public void StartAll()
         {
-            Debug.WriteLine("Starting all the managers");
             foreach (LedManager lm in ledList)
             {
                 lm.Start();

@@ -29,8 +29,24 @@ namespace MSI_LED_Custom
         {
             Program.adapterIndexes = new List<int>();
             Program.overwriteSecurityChecks = false;
-            
-            if ( _ADL.ADL_Initialize() )
+
+            int gpuCountNda = 0;
+            if (_NDA.NDA_Initialize())
+            {
+                
+                bool canGetGpuCount = _NDA.NDA_GetGPUCounts(out gpuCountNda);
+                if (canGetGpuCount == false)
+                {
+                    return;
+                }
+
+                if (gpuCountNda > 0 && InitializeNvidiaAdapters(gpuCountNda))
+                {
+                    manufacturer = Manufacturer.Nvidia;
+                }
+            }
+
+            if (gpuCountNda == 0 && _ADL.ADL_Initialize())
             {
                 int gpuCountAdl;
                 bool canGetGpuCount = _ADL.ADL_GetGPUCounts(out gpuCountAdl);
@@ -43,9 +59,6 @@ namespace MSI_LED_Custom
                 {
                     manufacturer = Manufacturer.AMD;
                 }
-            } else
-            {
-                return;
             }
 
             
@@ -108,6 +121,37 @@ namespace MSI_LED_Custom
                 }
             }
 
+            return true;
+        }
+
+        private static bool InitializeNvidiaAdapters(int gpuCount)
+        {
+            for (int i = 0; i < gpuCount; i++)
+            {
+                NdaGraphicsInfo graphicsInfo;
+                if (_NDA.NDA_GetGraphicsInfo(i, out graphicsInfo) == false)
+                {
+                    return false;
+                }
+
+                string vendorCode = graphicsInfo.Card_pDeviceId.Substring(4, 4).ToUpper();
+                string deviceCode = graphicsInfo.Card_pDeviceId.Substring(0, 4).ToUpper();
+                string subVendorCode = graphicsInfo.Card_pSubSystemId.Substring(4, 4).ToUpper();
+
+                if (overwriteSecurityChecks)
+                {
+                    if (vendorCode.Equals(Constants.VendorCodeNvidia, StringComparison.OrdinalIgnoreCase))
+                    {
+                        adapterIndexes.Add(i);
+                    }
+                }
+                else if (vendorCode.Equals(Constants.VendorCodeNvidia, StringComparison.OrdinalIgnoreCase)
+                    && subVendorCode.Equals(Constants.SubVendorCodeMsi, StringComparison.OrdinalIgnoreCase)
+                    && Constants.SupportedDeviceCodes.Any(dc => deviceCode.Equals(dc, StringComparison.OrdinalIgnoreCase)))
+                {
+                    adapterIndexes.Add(i);
+                }
+            }
             return true;
         }
     }

@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace MSI_LED_Custom
 {
-    class LedManager_AMD_Side : LedManager
+    class LedManager_NVD_Front : LedManager
     {
         private Thread t;
         private bool shouldStop = false;
@@ -16,11 +16,11 @@ namespace MSI_LED_Custom
         private List<int> adapterIndexes;
         private AnimationType animationType;
         private Mutex mutex;
-        private AdlGraphicsInfo adlGraphicsInfo;
+        private NdaGraphicsInfo NDAGraphicsInfo;
         private int[] temperatureLimits;
         private int lastTemperature = -1;
 
-        public LedManager_AMD_Side()
+        public LedManager_NVD_Front()
         {
             this.adapterIndexes = Program.adapterIndexes;
             this.ledColor = Program.ledColor;
@@ -95,7 +95,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 21, 1, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                _NDA.NDA_SetIlluminationParm_RGB(i, 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
             }
             this.PatientlyWait();
         }
@@ -104,7 +104,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 27, 1, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _NDA.NDA_SetIlluminationParm_RGB(i, 27, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -113,7 +113,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 28, 1, 0, 100, 100, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _NDA.NDA_SetIlluminationParm_RGB(i, 28, 4, 0, 100, 100, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -122,7 +122,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 30, 1, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _NDA.NDA_SetIlluminationParm_RGB(i, 30, 4, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -131,7 +131,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 24, 1, 0, 0, 0, 0, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                _NDA.NDA_SetIlluminationParm_RGB(i, 24, 4, 0, 0, 0, 0, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
             }
             this.PatientlyWait();
         }
@@ -141,16 +141,16 @@ namespace MSI_LED_Custom
             while (!shouldUpdate)
             {
                 mutex.WaitOne();
-                _ADL.ADL_GetGraphicsInfo(0, out adlGraphicsInfo);
+                _NDA.NDA_GetGraphicsInfo(0, out NDAGraphicsInfo);
 
-                if ((this.lastTemperature > this.adlGraphicsInfo.GPU_Temperature_Current + 1) || (this.lastTemperature < this.adlGraphicsInfo.GPU_Temperature_Current - 1))
+                if ((this.lastTemperature > this.NDAGraphicsInfo.GPU_Temperature_Current + 1) || (this.lastTemperature < this.NDAGraphicsInfo.GPU_Temperature_Current - 1))
                 {
-                    this.lastTemperature = this.adlGraphicsInfo.GPU_Temperature_Current;
-                    ledColor = GetColorForDeltaTemperature(this.adlGraphicsInfo.GPU_Temperature_Current);
+                    this.lastTemperature = this.NDAGraphicsInfo.GPU_Temperature_Current;
+                    ledColor = GetColorForDeltaTemperature(this.NDAGraphicsInfo.GPU_Temperature_Current);
 
                     for (int i = 0; i < this.adapterIndexes.Count; i++)
                     {
-                        _ADL.ADL_SetIlluminationParm_RGB(i, 21, 1, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                        _NDA.NDA_SetIlluminationParm_RGB(i, 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
                     }
                 }
                 mutex.ReleaseMutex();
