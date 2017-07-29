@@ -22,7 +22,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -105,7 +106,6 @@
     <Compile Include="LedManager\LedManager_Common.cs" />
     <Compile Include="LedManager\LedManager_AMD_Side.cs" />
     <Compile Include="LedManager\LedManager_AMD_Front.cs" />
-    <Compile Include="LedUpdater.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections;
+﻿using System.Collections;
 using System.Drawing;
-using System.Diagnostics;
 
 namespace MSI_LED_Custom
 {
@@ -32,7 +26,7 @@ namespace MSI_LED_Custom
             } else if ( this.manfacturer == Manufacturer.Nvidia )
             {
                 ledList.Add( new LedManager_NVD_Side() );
-                ledList.Add(new LedManager_NVD_Front());
+                ledList.Add( new LedManager_NVD_Front());
             }
         }
 

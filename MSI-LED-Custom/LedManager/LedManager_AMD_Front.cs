@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MSI_LED_Custom
 {
-    class LedManager_AMD_Front : LedManager
+    class LedManager_AMD_Front : LedManager 
     {
         private Thread t;
         private bool shouldStop = false;
@@ -65,25 +65,25 @@ namespace MSI_LED_Custom
                 switch (animationType)
                 {
                     case AnimationType.NoAnimation:
-                        this.updateLed_NoAnimation();
+                        this.UpdateLed_NoAnimation();
                         break;
                     case AnimationType.Breathing:
-                        this.updateLed_Breathing();
+                        this.UpdateLed_Breathing();
                         break;
                     case AnimationType.Flashing:
-                        this.updateLed_Flashing();
+                        this.UpdateLed_Flashing();
                         break;
                     case AnimationType.DoubleFlashing:
-                        this.updateLed_DoubleFlashing();
+                        this.UpdateLed_DoubleFlashing();
                         break;
                     case AnimationType.Off:
-                        this.updateLed_Off();
+                        this.UpdateLed_Off();
                         break;
                     case AnimationType.TemperatureBased:
-                        this.updateLed_TemperatureBased();
+                        this.UpdateLed_TemperatureBased();
                         break;
                     default:
-                        this.updateLed_NoAnimation();
+                        this.UpdateLed_NoAnimation();
                         break;
                 }
                 Thread.Sleep(100);
@@ -91,7 +91,7 @@ namespace MSI_LED_Custom
             }
         }
 
-        protected override void updateLed_Breathing()
+        protected override void UpdateLed_Breathing()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
@@ -100,7 +100,7 @@ namespace MSI_LED_Custom
             this.PatientlyWait();
         }
 
-        protected override void updateLed_DoubleFlashing()
+        protected override void UpdateLed_DoubleFlashing()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
@@ -109,7 +109,7 @@ namespace MSI_LED_Custom
             this.PatientlyWait();
         }
 
-        protected override void updateLed_Flashing()
+        protected override void UpdateLed_Flashing()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
@@ -118,7 +118,7 @@ namespace MSI_LED_Custom
             this.PatientlyWait();
         }
 
-        protected override void updateLed_NoAnimation()
+        protected override void UpdateLed_NoAnimation()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
@@ -127,7 +127,7 @@ namespace MSI_LED_Custom
             this.PatientlyWait();
         }
 
-        protected override void updateLed_Off()
+        protected override void UpdateLed_Off()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
@@ -136,7 +136,7 @@ namespace MSI_LED_Custom
             this.PatientlyWait();
         }
 
-        protected override void updateLed_TemperatureBased()
+        protected override void UpdateLed_TemperatureBased()
         {
             while (!shouldUpdate)
             {

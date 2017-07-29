@@ -33,18 +33,17 @@ namespace MSI_LED_Custom
             int gpuCountNda = 0;
             if (_NDA.NDA_Initialize())
             {
-                
                 bool canGetGpuCount = _NDA.NDA_GetGPUCounts(out gpuCountNda);
                 if (canGetGpuCount == false)
                 {
                     return;
                 }
-
                 if (gpuCountNda > 0 && InitializeNvidiaAdapters(gpuCountNda))
                 {
                     manufacturer = Manufacturer.Nvidia;
                 }
             }
+
 
             if (gpuCountNda == 0 && _ADL.ADL_Initialize())
             {
@@ -54,7 +53,6 @@ namespace MSI_LED_Custom
                 {
                     return;
                 }
-
                 if (gpuCountAdl > 0 && InitializeAmdAdapters(gpuCountAdl))
                 {
                     manufacturer = Manufacturer.AMD;
