@@ -9,6 +9,8 @@ This is a custom tool to control the LED system of the MSI Graphics Cards.
 
 For now, it have only been tested on the MSI RX480 Gaming X 8G. But if you tested it and you want to add your's on the list, just put a ticket !
 
+nVidia has been added into the project, but I don't have any card from them. So if anyone want to test it feel free to clone the repo and try it.
+
 ## Where does this tool come from ? How does it works ? 
 
 This tool is based on the good work of Vipeax here : https://github.com/Vipeax/MSI-LED-Tool
