@@ -23,12 +23,31 @@ namespace MSI_LED_Custom
         public static Color ledColor = Color.FromArgb(255, 255, 0, 0);
         public static AnimationType animationType = AnimationType.NoAnimation;
         public static LedManager_Common ledManager;
+        public static AdlGraphicsInfo graphicsInfo;
+
+        public static string vendorCode    = "N/A";
+        public static string deviceCode    = "N/A";
+        public static string subVendorCode = "N/A";
+        public static string[] args;
+
 
         [STAThread]
-        static void Main()
+        static void Main(String[] args )
         {
+            Program.args = args;
             Program.adapterIndexes = new List<int>();
-            Program.overwriteSecurityChecks = false;
+
+            //Change this to true if you card is not in the list.
+            //You can also add the parameter "/overwriteSecurityChecks"
+            overwriteSecurityChecks = false;
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i].Equals("overwriteSecurityChecks"))
+                {
+                    overwriteSecurityChecks = true;
+                }
+            }
 
             int gpuCountNda = 0;
             if (_NDA.NDA_Initialize())
@@ -78,7 +97,6 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < gpuCount; i++)
             {
-                AdlGraphicsInfo graphicsInfo;
                 if (_ADL.ADL_GetGraphicsInfo(i, out graphicsInfo) == false)
                 {
                     return false;
@@ -100,9 +118,9 @@ namespace MSI_LED_Custom
                     continue;
                 }
 
-                string vendorCode = codeSegments[0].Substring(4, 4).ToUpper();
-                string deviceCode = codeSegments[1].Substring(4, 4).ToUpper();
-                string subVendorCode = codeSegments[2].Substring(11, 4).ToUpper();
+                vendorCode = codeSegments[0].Substring(4, 4).ToUpper();
+                deviceCode = codeSegments[1].Substring(4, 4).ToUpper();
+                subVendorCode = codeSegments[2].Substring(11, 4).ToUpper();
 
                 if (overwriteSecurityChecks)
                 {

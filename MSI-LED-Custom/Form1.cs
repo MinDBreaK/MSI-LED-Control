@@ -20,7 +20,7 @@ namespace MSI_LED_Custom
         private void Form1_Load(object sender, EventArgs e)
         {
             label1.Text = Program.ledColor.ToString();
-            label4.Text = Program.adapterIndexes.Count.ToString();
+            label4.Text = Program.adapterIndexes.Count.ToString();  
 
             textBox1.Text = Program.ledColor.R.ToString();
             textBox2.Text = Program.ledColor.G.ToString();
@@ -88,6 +88,22 @@ namespace MSI_LED_Custom
                     Program.animationType = AnimationType.TemperatureBased;
                     break;
             }
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form_Debug form_debug = new Form_Debug();
+            form_debug.Show();
         }
     }
 }
