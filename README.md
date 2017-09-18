@@ -9,6 +9,10 @@ This is a custom tool to control the LED system of the MSI Graphics Cards.
 
 For now, it have only been tested on the MSI RX480 Gaming X 8G. But if you tested it and you want to add your's on the list, just put a ticket !
 
+I've added a debug window so all you have to do is to put the content in the textbox in the ticket !
+
+Try to launch the project with the argument "overwriteSecurityChecks". If the colors of your card change, then mentionned it, it is compatible.
+
 nVidia has been added into the project, but I don't have any card from them. So if anyone want to test it feel free to clone the repo and try it.
 
 ## Where does this tool come from ? How does it works ? 
@@ -27,9 +31,11 @@ You have the choice between :
 5. Off
 6. Temperature Based
 
-## Why there is no motherboard support ? 
+## Why there is no motherboard support ?
 
 The control of the motherboard need to communicate with a kernel driver, and I don't know anything about this, but you can read more about this here : https://github.com/nagisa/msi-rgb/
+
+Someone is working on it for now.
 
 ## Known issues
 1. The updates might fail. Switch to OFF mode and turn it back on.
