@@ -181,7 +181,7 @@ namespace MSI_LED_Custom
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(170, 359);
+            this.ClientSize = new System.Drawing.Size(160, 359);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
