@@ -95,7 +95,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 27, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 27, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -104,7 +104,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 30, 4, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 30, 4, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -113,7 +113,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 28, 4, 0, 100, 100, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
+                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 28, 4, 0, 100, 100, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -122,7 +122,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
             }
             this.PatientlyWait();
         }
@@ -131,7 +131,7 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(i, 24, 4, 0, 0, 0, 0, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 24, 4, 0, 0, 0, 0, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
             }
             this.PatientlyWait();
         }
@@ -150,7 +150,7 @@ namespace MSI_LED_Custom
 
                     for (int i = 0; i < this.adapterIndexes.Count; i++)
                     {
-                        _ADL.ADL_SetIlluminationParm_RGB(i, 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                        _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
                     }
                 }
                 mutex.ReleaseMutex();
