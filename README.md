@@ -48,4 +48,4 @@ Someone is working on it for now.
 
 ## Known issues
 1. The updates might fail. Switch to OFF mode and turn it back on.
-2. Updating the LED cause the GC to drop performances for a short time (<0.25s) but result in a short freeze. You should not use temperature based mode during a game. This is related to the librairies and the GC itself. This MIGHT me patched if someone find a way to avoid using MSI libraries.
+2. Updating the LED cause the GC to drop performances for a short time (<0.25s) but result in a short freeze. You should not use temperature based mode during a game. This is related to the librairies and the GC itself. This MIGHT be patched if someone find a way to avoid using MSI libraries.
