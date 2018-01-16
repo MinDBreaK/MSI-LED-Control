@@ -42,10 +42,12 @@ namespace MSI_LED_Custom
             this.shouldUpdate = true;
         }
 
-        public override void Update(AnimationType newAnimation, Color ledColor)
+        public override void Update(AnimationType newAnimation, Color ledColor, int tempMin, int tempMax)
         {
             this.animationType = newAnimation;
             this.ledColor = ledColor;
+            this.temperatureLimits[0] = tempMin;
+            this.temperatureLimits[1] = tempMax;
             this.shouldUpdate = true;
         }
 

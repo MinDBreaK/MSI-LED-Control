@@ -25,8 +25,8 @@ namespace MSI_LED_Custom
             this.adapterIndexes = Program.adapterIndexes;
             this.ledColor = Program.ledColor;
             this.temperatureLimits = new int[2];
-            this.temperatureLimits[0] = 45;
-            this.temperatureLimits[1] = 65;
+            this.temperatureLimits[0] = Program.tempMin;
+            this.temperatureLimits[1] = Program.tempMax;
             this.mutex = new Mutex();
 
         }
@@ -75,10 +75,12 @@ namespace MSI_LED_Custom
             this.shouldUpdate = true;
         }
 
-        public override void Update(AnimationType newAnimation, Color ledColor)
+        public override void Update(AnimationType newAnimation, Color ledColor, int tempMin, int tempMax)
         {
             this.animationType = newAnimation;
             this.ledColor = ledColor;
+            this.temperatureLimits[0] = tempMin;
+            this.temperatureLimits[1] = tempMax;
             this.shouldUpdate = true;
         }
 

@@ -25,6 +25,10 @@ namespace MSI_LED_Custom
         public static LedManager_Common ledManager;
         public static AdlGraphicsInfo graphicsInfo;
 
+        public static int tempMin = 35;
+        public static int tempMax = 70;
+
+
         public static string vendorCode    = "N/A";
         public static string deviceCode    = "N/A";
         public static string subVendorCode = "N/A";
@@ -36,11 +40,9 @@ namespace MSI_LED_Custom
         {
             Program.args = args;
             Program.adapterIndexes = new List<int>();
-
-            //Change this to true if you card is not in the list.
+            //DO NOT MODIFY HERE. USE PARAMETER !!
             //You can also add the parameter "/overwriteSecurityChecks"
             overwriteSecurityChecks = false;
-
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i].Equals("overwriteSecurityChecks"))

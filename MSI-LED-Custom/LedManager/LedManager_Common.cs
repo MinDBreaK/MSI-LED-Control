@@ -46,14 +46,14 @@ namespace MSI_LED_Custom
             }
         }
 
-        public void UpdateAll(Color color, AnimationType aT)
+        public void UpdateAll(Color color, AnimationType aT, int tempMin, int tempMax)
         {
             this.ledColor = color;
             this.animationType = aT;
 
             foreach (LedManager lm in ledList)
             {
-                lm.Update(animationType, ledColor);
+                lm.Update(animationType, ledColor, tempMin, tempMax);
             }
         }
     }

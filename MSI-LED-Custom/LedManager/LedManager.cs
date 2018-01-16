@@ -8,7 +8,7 @@ namespace MSI_LED_Custom
         protected abstract void Run();
         abstract public void Start();
         abstract public void Stop();
-        abstract public void Update(AnimationType newAnimation, Color ledColor);
+        abstract public void Update(AnimationType newAnimation, Color ledColor, int tempMin, int tempMax);
         abstract protected void UpdateLed_NoAnimation();
         abstract protected void UpdateLed_Breathing();
         abstract protected void UpdateLed_Flashing();
