@@ -9,6 +9,15 @@ This is a custom tool to control the LED system of the MSI Graphics Cards.
 
 For now, it have only been tested on the MSI RX480 Gaming X 8G. But if you tested it and you want to add your's on the list, just put a ticket !
 
+### nVidia
+* 1080Ti
+* 1080
+* 1070
+* 1060 (3 & 6 GB)
+
+### AMD
+* All Polaris graphic cards
+
 I've added a debug window so all you have to do is to put the content in the textbox in the ticket !
 
 Try to launch the project with the argument "overwriteSecurityChecks". If the colors of your card change, then mentionned it, it is compatible.
