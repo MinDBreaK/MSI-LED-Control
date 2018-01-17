@@ -84,7 +84,7 @@ namespace MSI_LED_Custom
             ledManager = new LedManager_Common(manufacturer, animationType);
             ledManager.InitLedManagers();
             ledManager.StartAll();
-            ledManager.UpdateAll(ledColor, animationType);
+            ledManager.UpdateAll(ledColor, animationType, tempMin, tempMax);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
