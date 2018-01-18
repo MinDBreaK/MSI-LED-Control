@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
-
 
 namespace MSI_LED_Custom
 {
@@ -25,8 +23,8 @@ namespace MSI_LED_Custom
             this.adapterIndexes = Program.adapterIndexes;
             this.ledColor = Program.ledColor;
             this.temperatureLimits = new int[2];
-            this.temperatureLimits[0] = Program.tempMin;
-            this.temperatureLimits[1] = Program.tempMax;
+            this.temperatureLimits[0] = 45;
+            this.temperatureLimits[1] = 70;
             this.mutex = new Mutex();
 
         }

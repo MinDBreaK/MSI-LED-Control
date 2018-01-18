@@ -26,7 +26,7 @@ namespace MSI_LED_Custom
             this.ledColor = Program.ledColor;
             this.temperatureLimits = new int[2];
             this.temperatureLimits[0] = 45;
-            this.temperatureLimits[1] = 65;
+            this.temperatureLimits[1] = 70;
             this.mutex = new Mutex();
 
         }

@@ -110,12 +110,12 @@
     <Compile Include="Form_Debug.Designer.cs">
       <DependentUpon>Form_Debug.cs</DependentUpon>
     </Compile>
+    <Compile Include="LedManager\LedManager_AMD_Side.cs" />
+    <Compile Include="LedManager\LedManager_AMD_Front.cs" />
     <Compile Include="LedManager\LedManager_NVD_Front.cs" />
     <Compile Include="LedManager\LedManager_NVD_Side.cs" />
     <Compile Include="LedManager\LedManager.cs" />
     <Compile Include="LedManager\LedManager_Common.cs" />
-    <Compile Include="LedManager\LedManager_AMD_Side.cs" />
-    <Compile Include="LedManager\LedManager_AMD_Front.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -144,7 +144,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="MSI-LED-Custom_1_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
