@@ -13,7 +13,7 @@ Any functionnality must have been tested on multiple hardware. Ask for testing o
 
 ## Submitting changes
 
-Please send a [GitHub Pull Request to MinDBreaK/MSI-LED-Control](https://github.com/MinDBreaK/MSI-LED-Control/pull/new/master) with a clear list of what you've done (read more about [pull requests](http://help.github.com/pull-requests/)).
+Please send a [GitHub Pull Request to MinDBreaK/MSI-LED-Control](https://github.com/MinDBreaK/MSI-LED-Control/pull/new/master) with a clear list of what you've done (read more about [pull requests](https://help.github.com/articles/about-pull-requests/)).
 
 Always write a clear log message for your commits. One-line messages are fine for small changes, but bigger changes should look like this:
 
