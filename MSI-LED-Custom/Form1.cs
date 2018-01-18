@@ -19,13 +19,9 @@ namespace MSI_LED_Custom
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label1.Text = Program.ledColor.ToString();
-            label4.Text = Program.adapterIndexes.Count.ToString();  
-
             textBox1.Text = Program.ledColor.R.ToString();
             textBox2.Text = Program.ledColor.G.ToString();
             textBox3.Text = Program.ledColor.B.ToString();
-
             textBox4.Text = Program.tempMin.ToString();
             textBox5.Text = Program.tempMax.ToString();
         }
@@ -59,7 +55,6 @@ namespace MSI_LED_Custom
             
 
             Program.ledColor = Color.FromArgb(255, Int32.Parse(textBox1.Text), Int32.Parse(textBox2.Text), Int32.Parse(textBox3.Text));
-            label1.Text = Program.ledColor.ToString();
             Program.tempMin = Int32.Parse(textBox4.Text);
             Program.tempMax = Int32.Parse(textBox5.Text);
 
@@ -113,6 +108,11 @@ namespace MSI_LED_Custom
         }
 
         private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

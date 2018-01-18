@@ -20,12 +20,12 @@ namespace MSI_LED_Custom
         public static bool overwriteSecurityChecks;
         public static List<int> adapterIndexes;
         public static Manufacturer manufacturer;
-        public static Color ledColor = Color.FromArgb(255, 255, 0, 0);
+        public static Color ledColor = Color.FromArgb(255, 255, 255, 255);
         public static AnimationType animationType = AnimationType.NoAnimation;
         public static LedManager_Common ledManager;
         public static AdlGraphicsInfo graphicsInfo;
 
-        public static int tempMin = 35;
+        public static int tempMin = 45;
         public static int tempMax = 70;
 
 

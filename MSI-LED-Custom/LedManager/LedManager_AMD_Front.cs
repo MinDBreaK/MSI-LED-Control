@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace MSI_LED_Custom
 {
-    class LedManager_AMD_Front : LedManager 
+    class LedManager_AMD_Front : LedManager
     {
         private Thread t;
         private bool shouldStop = false;
@@ -21,45 +18,15 @@ namespace MSI_LED_Custom
         private int[] temperatureLimits;
         private int lastTemperature = -1;
 
-        public LedManager_AMD_Front ()
+        public LedManager_AMD_Front()
         {
             this.adapterIndexes = Program.adapterIndexes;
             this.ledColor = Program.ledColor;
             this.temperatureLimits = new int[2];
             this.temperatureLimits[0] = 45;
-            this.temperatureLimits[1] = 65;
+            this.temperatureLimits[1] = 70;
             this.mutex = new Mutex();
         }
-        public override void Start()
-        {
-            this.t = new Thread(new ThreadStart(this.Run));
-            t.Start();
-        }
-
-        public override void Stop()
-        {
-            this.shouldStop = true;
-            this.shouldUpdate = true;
-        }
-
-        public override void Update(AnimationType newAnimation, Color ledColor, int tempMin, int tempMax)
-        {
-            this.animationType = newAnimation;
-            this.ledColor = ledColor;
-            this.temperatureLimits[0] = tempMin;
-            this.temperatureLimits[1] = tempMax;
-            this.shouldUpdate = true;
-        }
-
-        private void PatientlyWait()
-        {
-            while (!shouldStop && !shouldUpdate)
-            {
-                Thread.Sleep(1000);
-            }
-            return;
-        }
-
         protected override void Run()
         {
             while (!shouldStop)
@@ -93,20 +60,50 @@ namespace MSI_LED_Custom
             }
         }
 
+        public override void Start()
+        {
+            this.t = new Thread(new ThreadStart(this.Run));
+            t.Start();
+        }
+
+        public override void Stop()
+        {
+            this.shouldStop = true;
+            this.shouldUpdate = true;
+        }
+
+        public override void Update(AnimationType newAnimation, Color ledColor, int tempMin, int tempMax)
+        {
+            this.animationType = newAnimation;
+            this.ledColor = ledColor;
+            this.temperatureLimits[0] = tempMin;
+            this.temperatureLimits[1] = tempMax;
+            this.shouldUpdate = true;
+        }
+
+        private void PatientlyWait()
+        {
+            while (!shouldStop && !shouldUpdate)
+            {
+                Thread.Sleep(1000);
+            }
+            return;
+        }
+
+        protected override void UpdateLed_NoAnimation()
+        {
+            for (int i = 0; i < this.adapterIndexes.Count; i++)
+            {
+                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+            }
+            this.PatientlyWait();
+        }
+
         protected override void UpdateLed_Breathing()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
                 _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 27, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, false);
-            }
-            this.PatientlyWait();
-        }
-
-        protected override void UpdateLed_DoubleFlashing()
-        {
-            for (int i = 0; i < this.adapterIndexes.Count; i++)
-            {
-                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 30, 4, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
@@ -120,11 +117,11 @@ namespace MSI_LED_Custom
             this.PatientlyWait();
         }
 
-        protected override void UpdateLed_NoAnimation()
+        protected override void UpdateLed_DoubleFlashing()
         {
             for (int i = 0; i < this.adapterIndexes.Count; i++)
             {
-                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 21, 4, 0, 0, 0, 4, 0, 0, ledColor.R, ledColor.G, ledColor.B, true);
+                _ADL.ADL_SetIlluminationParm_RGB(adapterIndexes[i], 30, 4, 0, 10, 15, 4, 2, 0, ledColor.R, ledColor.G, ledColor.B, false);
             }
             this.PatientlyWait();
         }
