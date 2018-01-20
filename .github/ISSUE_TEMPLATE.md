@@ -11,8 +11,10 @@ What really happen
 ### Step to reproduce
 How have you done this
 
-### Hardware
-What's your graphic card
+### Hardware & Software
+What's your graphic card ?
+What's you windows version ?
+What's your driver version .
 
 ### Debug 
 
@@ -20,6 +22,6 @@ What's your graphic card
 Insert here the content of the debug window
 `
 
-## Enhencement
+## Enhancement
 
 No default template, just try to make it clear
