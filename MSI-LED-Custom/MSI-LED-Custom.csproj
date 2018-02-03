@@ -110,7 +110,9 @@
     <Compile Include="Form_Debug.Designer.cs">
       <DependentUpon>Form_Debug.cs</DependentUpon>
     </Compile>
+    <Compile Include="LedManager\LedManager_AMD_Back.cs" />
     <Compile Include="LedManager\LedManager_NVD_Front.cs" />
+    <Compile Include="LedManager\LedManager_NVD_Back.cs" />
     <Compile Include="LedManager\LedManager_NVD_Side.cs" />
     <Compile Include="LedManager\LedManager.cs" />
     <Compile Include="LedManager\LedManager_Common.cs" />

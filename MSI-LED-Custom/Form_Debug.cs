@@ -19,19 +19,34 @@ namespace MSI_LED_Custom
 
         private void Form_Debug_Load(object sender, EventArgs e)
         {
-            if (Program.graphicsInfo.Card_PNP != null)
+            if (Program.manufacturer == Manufacturer.AMD)
             {
-                label9.Text = Program.graphicsInfo.Card_PNP;
+                label11.Text = Program.vendorCode;
+                label13.Text = Program.deviceCode;
+                label15.Text = Program.subVendorCode;
+
+                textBox1.Text = "PnP Card : " + Program.AdlGraphicsInfo.Card_PNP + "\r\n"
+                              + "Vendor Code : " + Program.vendorCode + "\r\n"
+                              + "Device Code : " + Program.deviceCode + "\r\n"
+                              + "Subvendor Code : " + Program.subVendorCode + "\r\n";
+            }
+            else if (Program.manufacturer == Manufacturer.Nvidia)
+            {
+                label11.Text = Program.vendorCode;
+                label13.Text = Program.deviceCode;
+                label15.Text = Program.subVendorCode;
+
+                textBox1.Text = "PnP Card : " + Program.NdaGraphicsInfo.Card_pDeviceId + "\r\n"
+                              + "Vendor Code : " + Program.vendorCode + "\r\n"
+                              + "Device Code : " + Program.deviceCode + "\r\n"
+                              + "Subvendor Code : " + Program.subVendorCode + "\r\n";
+            }
+            if (Program.AdlGraphicsInfo.Card_PNP != null)
+            {
+                label9.Text = Program.AdlGraphicsInfo.Card_PNP;
             }
 
-            label11.Text = Program.vendorCode;
-            label13.Text = Program.deviceCode;
-            label15.Text = Program.subVendorCode;
-
-            textBox1.Text = "PnP Card : " + Program.graphicsInfo.Card_PNP + "\r\n"
-                          + "Vendor Code : " + Program.vendorCode + "\r\n"
-                          + "Device Code : " + Program.deviceCode + "\r\n" 
-                          + "Subvendor Code : " + Program.subVendorCode+ "\r\n";
+            
 
             textBox1.AppendText("Manufacturer : " + Program.manufacturer + "\r\n");
 

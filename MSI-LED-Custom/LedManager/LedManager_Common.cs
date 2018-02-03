@@ -25,7 +25,7 @@ namespace MSI_LED_Custom
                 ledList.Add( new LedManager_AMD_Front());
             } else if ( this.manfacturer == Manufacturer.Nvidia )
             {
-                ledList.Add( new LedManager_NVD_Side() );
+                ledList.Add( new LedManager_NVD_Back() );
                 ledList.Add( new LedManager_NVD_Front());
             }
         }

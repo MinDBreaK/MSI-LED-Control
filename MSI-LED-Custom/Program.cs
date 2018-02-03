@@ -23,7 +23,8 @@ namespace MSI_LED_Custom
         public static Color ledColor = Color.FromArgb(255, 255, 0, 0);
         public static AnimationType animationType = AnimationType.NoAnimation;
         public static LedManager_Common ledManager;
-        public static AdlGraphicsInfo graphicsInfo;
+        public static AdlGraphicsInfo AdlGraphicsInfo;
+        public static NdaGraphicsInfo NdaGraphicsInfo;
 
         public static int tempMin = 35;
         public static int tempMax = 70;
@@ -99,13 +100,13 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < gpuCount; i++)
             {
-                if (_ADL.ADL_GetGraphicsInfo(i, out graphicsInfo) == false)
+                if (_ADL.ADL_GetGraphicsInfo(i, out AdlGraphicsInfo) == false)
                 {
                     return false;
                 }
 
                 // PCI\VEN_1002&DEV_67DF&SUBSYS_34111462&REV_CF\4&25438C51&0&0008
-                var pnpSegments = graphicsInfo.Card_PNP.Split('\\');
+                var pnpSegments = AdlGraphicsInfo.Card_PNP.Split('\\');
 
                 if (pnpSegments.Length < 2)
                 {
@@ -146,15 +147,15 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < gpuCount; i++)
             {
-                NdaGraphicsInfo graphicsInfo;
-                if (_NDA.NDA_GetGraphicsInfo(i, out graphicsInfo) == false)
+                
+                if (_NDA.NDA_GetGraphicsInfo(i, out NdaGraphicsInfo) == false)
                 {
                     return false;
                 }
 
-                string vendorCode = graphicsInfo.Card_pDeviceId.Substring(4, 4).ToUpper();
-                string deviceCode = graphicsInfo.Card_pDeviceId.Substring(0, 4).ToUpper();
-                string subVendorCode = graphicsInfo.Card_pSubSystemId.Substring(4, 4).ToUpper();
+                string deviceCode = NdaGraphicsInfo.Card_pDeviceId.Substring(0, 4).ToUpper();
+                string vendorCode = NdaGraphicsInfo.Card_pDeviceId.Substring(4, 4).ToUpper();
+                string subVendorCode = NdaGraphicsInfo.Card_pSubSystemId.Substring(4, 4).ToUpper();
 
                 if (overwriteSecurityChecks)
                 {
