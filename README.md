@@ -20,7 +20,7 @@ For now, it have only been tested on the MSI RX480 Gaming X 8G. But if you teste
 
 I've added a debug window so all you have to do is to put the content in the textbox in the ticket !
 
-Try to launch the project with the argument "overwriteSecurityChecks". If the colors of your card change, then mentionned it, it is compatible.
+Try to launch the project with the argument `overwriteSecurityChecks`. If the colors of your card change, then mentionned it, it is compatible.
 
 nVidia has been added into the project, but I don't have any card from them. So if anyone want to test it feel free to clone the repo and try it.
 
