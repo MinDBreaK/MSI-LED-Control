@@ -39,7 +39,9 @@ namespace MSI_LED_Custom
                 textBox1.Text = "PnP Card : " + Program.NdaGraphicsInfo.Card_pDeviceId + "\r\n"
                               + "Vendor Code : " + Program.vendorCode + "\r\n"
                               + "Device Code : " + Program.deviceCode + "\r\n"
-                              + "Subvendor Code : " + Program.subVendorCode + "\r\n";
+                              + "Subvendor Code : " + Program.subVendorCode + "\r\n"
+                              + "Card name : " + Program.NdaGraphicsInfo.Card_FullName + "\r\n"
+                              + "Card PnP2 : " + Program.NdaGraphicsInfo.Card_PNP;
             }
             if (Program.AdlGraphicsInfo.Card_PNP != null)
             {
