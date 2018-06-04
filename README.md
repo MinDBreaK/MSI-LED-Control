@@ -4,6 +4,7 @@ Hi there !
 
 This is a custom tool to control the LED system of the MSI Graphics Cards. 
 
+I'm looking for active maintainer or tester for nVidia part. Just join the discord channel in the CONTRIBUTING.md file
 
 ## Which cards are supported ? 
 
