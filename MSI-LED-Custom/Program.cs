@@ -39,6 +39,27 @@ namespace MSI_LED_Custom
         [STAThread]
         static void Main(String[] args )
         {
+
+            if (Properties.Settings.Default["Color"] is Color)
+            {
+                Program.ledColor = (Color)Properties.Settings.Default["Color"];
+            }
+
+            if (Properties.Settings.Default["Mode"] is int)
+            {
+                Program.animationType = (AnimationType)Properties.Settings.Default["Mode"];
+            }
+
+            if (Properties.Settings.Default["TempMin"] is int)
+            {
+                Program.tempMin = (int)Properties.Settings.Default["TempMin"];
+            }
+
+            if (Properties.Settings.Default["TempMax"] is int)
+            {
+                Program.tempMax = (int)Properties.Settings.Default["TempMax"];
+            }
+
             Program.args = args;
             Program.adapterIndexes = new List<int>();
             //DO NOT MODIFY HERE. USE PARAMETER !!
@@ -95,6 +116,7 @@ namespace MSI_LED_Custom
             ledManager.StopAll();
 
         }
+
 
         private static bool InitializeAmdAdapters(int gpuCount)
         {

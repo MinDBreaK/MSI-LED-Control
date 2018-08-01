@@ -64,6 +64,13 @@ namespace MSI_LED_Custom
             Program.tempMax = Int32.Parse(textBox5.Text);
 
             Program.ledManager.UpdateAll(Program.ledColor, Program.animationType, Program.tempMin, Program.tempMax);
+
+            Properties.Settings.Default["Color"] = Program.ledColor;
+            Properties.Settings.Default["Mode"] = (int)Program.animationType;
+            Properties.Settings.Default["TempMin"] = Program.tempMin;
+            Properties.Settings.Default["TempMax"] = Program.tempMax;
+
+            Properties.Settings.Default.Save();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
