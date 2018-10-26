@@ -34,6 +34,7 @@ namespace MSI_LED_Custom
         public static string deviceCode    = "N/A";
         public static string subVendorCode = "N/A";
         public static string[] args;
+        static bool updateAll = false;
 
 
         [STAThread]
@@ -70,6 +71,10 @@ namespace MSI_LED_Custom
                 if (args[i].Equals("overwriteSecurityChecks"))
                 {
                     overwriteSecurityChecks = true;
+                }
+                else if (args[i].Equals("updateAll"))
+                {
+                    updateAll = true;
                 }
             }
 
@@ -108,10 +113,12 @@ namespace MSI_LED_Custom
             ledManager.StartAll();
             ledManager.UpdateAll(ledColor, animationType, tempMin, tempMax);
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-
+            if (!updateAll)
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
+            }
             
             ledManager.StopAll();
 
