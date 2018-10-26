@@ -175,9 +175,9 @@ namespace MSI_LED_Custom
                     return false;
                 }
 
-                string deviceCode = NdaGraphicsInfo.Card_pDeviceId.Substring(0, 4).ToUpper();
-                string vendorCode = NdaGraphicsInfo.Card_pDeviceId.Substring(4, 4).ToUpper();
-                string subVendorCode = NdaGraphicsInfo.Card_pSubSystemId.Substring(4, 4).ToUpper();
+                deviceCode = NdaGraphicsInfo.Card_pDeviceId.Substring(0, 4).ToUpper();
+                vendorCode = NdaGraphicsInfo.Card_pDeviceId.Substring(4, 4).ToUpper();
+                subVendorCode = NdaGraphicsInfo.Card_pSubSystemId.Substring(4, 4).ToUpper();
 
                 if (overwriteSecurityChecks)
                 {
