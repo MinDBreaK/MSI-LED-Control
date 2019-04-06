@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace MSI_LED_Custom
 {
@@ -16,7 +17,7 @@ namespace MSI_LED_Custom
         /// </summary>
         /// 
 
-        
+
         public static bool overwriteSecurityChecks;
         public static List<int> adapterIndexes;
         public static Manufacturer manufacturer;
@@ -30,14 +31,17 @@ namespace MSI_LED_Custom
         public static int tempMax = 70;
 
 
-        public static string vendorCode    = "N/A";
-        public static string deviceCode    = "N/A";
+        public static string vendorCode = "N/A";
+        public static string deviceCode = "N/A";
         public static string subVendorCode = "N/A";
         public static string[] args;
+        static bool updateAll = false;
+        
+
 
 
         [STAThread]
-        static void Main(String[] args )
+        static void Main(String[] args)
         {
 
             if (Properties.Settings.Default["Color"] is Color)
@@ -71,6 +75,11 @@ namespace MSI_LED_Custom
                 {
                     overwriteSecurityChecks = true;
                 }
+                else if (args[i].Equals("updateAll"))
+                {
+                    updateAll = true;
+
+                }
             }
 
             int gpuCountNda = 0;
@@ -102,17 +111,15 @@ namespace MSI_LED_Custom
                 }
             }
 
-            
+
             ledManager = new LedManager_Common(manufacturer, animationType);
             ledManager.InitLedManagers();
             ledManager.StartAll();
             ledManager.UpdateAll(ledColor, animationType, tempMin, tempMax);
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1(updateAll));
 
-            
             ledManager.StopAll();
 
         }
@@ -169,15 +176,15 @@ namespace MSI_LED_Custom
         {
             for (int i = 0; i < gpuCount; i++)
             {
-                
+
                 if (_NDA.NDA_GetGraphicsInfo(i, out NdaGraphicsInfo) == false)
                 {
                     return false;
                 }
 
-                string deviceCode = NdaGraphicsInfo.Card_pDeviceId.Substring(0, 4).ToUpper();
-                string vendorCode = NdaGraphicsInfo.Card_pDeviceId.Substring(4, 4).ToUpper();
-                string subVendorCode = NdaGraphicsInfo.Card_pSubSystemId.Substring(4, 4).ToUpper();
+                deviceCode = NdaGraphicsInfo.Card_pDeviceId.Substring(0, 4).ToUpper();
+                vendorCode = NdaGraphicsInfo.Card_pDeviceId.Substring(4, 4).ToUpper();
+                subVendorCode = NdaGraphicsInfo.Card_pSubSystemId.Substring(4, 4).ToUpper();
 
                 if (overwriteSecurityChecks)
                 {

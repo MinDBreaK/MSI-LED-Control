@@ -41,6 +41,8 @@ You have the choice between :
 5. Off
 6. Temperature Based
 
+You can start program with 'updateAll' arg and it will apply color settings and close after 20 seconds. Usefull for autostart with Windows.
+
 ## Why there is no motherboard support ?
 
 The control of the motherboard need to communicate with a kernel driver, and I don't know anything about this, but you can read more about this here : https://github.com/nagisa/msi-rgb/
