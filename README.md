@@ -6,6 +6,8 @@ This is a custom tool to control the LED system of the MSI Graphics Cards.
 
 I'm looking for active maintainer or tester for nVidia part. Just join the discord channel in the CONTRIBUTING.md file
 
+⚠️ I do not own MSI GPU anymore. I cannot test anything. Maintainers are welcome.
+
 ## Which cards are supported ? 
 
 For now, it have only been tested on the MSI RX480 Gaming X 8G. But if you tested it and you want to add your's on the list, just put a ticket !
